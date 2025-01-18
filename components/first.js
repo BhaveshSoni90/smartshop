@@ -1,67 +1,38 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';  // Import for Tab Navigation
+import { View, Text } from 'react-native';
+
+const Tab = createBottomTabNavigator();  // Create the Tab navigator
+
+// Simple screen components
 function HomeScreen() {
   return (
-    <View style={styles.screenContainer}>
-      <Text style={styles.title}>Home Screen</Text>
+    <View>
+      <Text>Home Screen</Text>
     </View>
   );
 }
-function SignupScreen() {
+
+function SettingsScreen() {
   return (
-    <View style={styles.screenContainer}>
-      <Text style={styles.title}>Signup Screen</Text>
-    </View>
-  );
-}
-function ContactUsScreen() {
-  return (
-    <View style={styles.screenContainer}>
-      <Text style={styles.title}>Contact Us Screen</Text>
+    <View>
+      <Text>Settings Screen</Text>
     </View>
   );
 }
 
-
-function AboutScreen() {
-  return (
-    <View style={styles.screenContainer}>
-      <Text style={styles.title}>About Screen</Text>
-    </View>
-  );
-}
-
-
-const Drawer = createDrawerNavigator();
-
-
+// Main component with Tab Navigation
 function First() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="Signup" component={SignupScreen} />
-        <Drawer.Screen name="Contact Us" component={ContactUsScreen} />
-        <Drawer.Screen name="About" component={AboutScreen} />
-      </Drawer.Navigator>
+      {/* Wrap Tab.Screen inside Tab.Navigator */}
+      <Tab.Navigator initialRouteName="Home">
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Settings" component={SettingsScreen} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
-
-// Styles for screens
-const styles = StyleSheet.create({
-  screenContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f8f8f8',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-});
 
 export default First;
